@@ -87,7 +87,7 @@ export default class PyMapLibreGL {
           layer_id: layer.id,
         };
         console.log(inputName, feature);
-        Shiny.onInputChange(inputName, feature);
+        Shiny.setInputValue(inputName, feature, { priority: "event" });
       });
     }
   }
@@ -106,8 +106,8 @@ export default class PyMapLibreGL {
   }
 
   addPopupDefault(layerId, property = null, template = null) {
-    const popup = new maplibregl.Popup();
     this._map.on("click", layerId, (e) => {
+      const popup = new maplibregl.Popup();
       const feature = e.features[0];
       // const text = feature.properties[property];
       const text = getTextFromFeature(feature, property, template);

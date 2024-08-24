@@ -84,10 +84,9 @@ function getCustomMapMethods(maplibregl, map) {
     },
 
     addPopupDefault: function (layerId, property = null, template = null) {
-      const popup = new maplibregl.Popup();
       map.on("click", layerId, (e) => {
         const feature = e.features[0];
-
+        const popup = new maplibregl.Popup();
         // const text = feature.properties[property];
         const text = getTextFromFeature(feature, property, template);
         popup.setLngLat(e.lngLat).setHTML(text).addTo(map);
