@@ -105,6 +105,15 @@ export default class PyMapLibreGL {
     });
   }
 
+  addPopupDefault(layerId, property = null, template = null) {
+    const popup = new maplibregl.Popup();
+    this._map.on("click", layerId, (e) => {
+      const feature = e.features[0];
+      // const text = feature.properties[property];
+      const text = getTextFromFeature(feature, property, template);
+      popup.setLngLat(e.lngLat).setHTML(text).addTo(this._map);
+    });
+  }
   addTooltip(layerId, property = null, template = null) {
     const popupOptions = {
       closeButton: false,
@@ -193,6 +202,7 @@ export default class PyMapLibreGL {
           "addTooltip",
           "addMarker",
           "addPopup",
+          "addPopupDefault",
           "addControl",
           "setSourceData",
           "addDeckOverlay",
