@@ -41,13 +41,15 @@ if (typeof Shiny !== "undefined") {
         const inputName = `${el.id}_clicked`;
         const data = { coords: e.lngLat, point: e.point };
         console.log(inputName, data);
-        Shiny.onInputChange(inputName, data);
+        Shiny.setInputValue(inputName, data, { priority: "event" });
       });
 
       for (const event of ["load", "zoomend", "moveend"]) {
         map.on(event, (e) => {
           const inputName = `${el.id}_view_state`;
-          Shiny.onInputChange(inputName, getViewState(map));
+          Shiny.setInputValue(inputName, getViewState(map), {
+            priority: "event",
+          });
         });
       }
 

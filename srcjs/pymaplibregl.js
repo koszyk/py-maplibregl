@@ -87,7 +87,7 @@ export default class PyMapLibreGL {
           layer_id: layer.id,
         };
         console.log(inputName, feature);
-        Shiny.onInputChange(inputName, feature);
+        Shiny.setInputValue(inputName, feature, { priority: "event" });
       });
     }
   }
