@@ -177,6 +177,18 @@ class Map(object):
         """
         self.add_call("addPopup", layer_id, prop, template)
 
+    def add_popup_default(
+        self, layer_id: str, prop: str = None, template: str = None
+    ) -> None:
+        """Add a popup to the map
+
+        Args:
+            layer_id (str): The layer to which the popup is added.
+            prop (str): The property of the source to be displayed. If `None`, all properties are displayed.
+            template (str): A mustache template. If supplied, `prop` is ignored.
+        """
+        self.add_call("addPopupDefault", layer_id, prop, template)
+
     def add_tooltip(
         self, layer_id: str, prop: str = None, template: str = None
     ) -> None:
