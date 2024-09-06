@@ -83,6 +83,8 @@ export default class PyMapLibreGL {
         console.log(e, e.features[0]);
         const inputName = `${this._id}_feature_clicked`;
         const feature = {
+          coords: e.lngLat,
+          point: e.point,
           props: e.features[0].properties,
           layer_id: layer.id,
         };
